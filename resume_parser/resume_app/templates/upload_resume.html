@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Resume</title>
+</head>
+<body>
+    <h1>Upload Resume</h1>
+    <form method="post" action="{% url 'resume_app:process_resume' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="resume" accept=".pdf,.doc,.docx">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>

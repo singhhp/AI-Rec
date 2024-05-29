@@ -1,0 +1,27 @@
+.welcome-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .logo-container,
+  .login-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .logo {
+    height: 100px;
+    width: 300px;
+    margin-left: -100px;
+  }
+  
+  .login-button {
+    max-width: 100px;
+    cursor: pointer;
+  }
+  .navbar{
+    justify-content: center;
+  }

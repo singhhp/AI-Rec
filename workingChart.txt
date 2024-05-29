@@ -1,0 +1,111 @@
+import React, { useState, useEffect } from 'react';
+import skillsData from './skillsDataResume.json';
+import selectedSkillsData from './selectedSkills.json';
+import { Pie } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
+
+function Charts() {
+  const [skills, setSkills] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
+  useEffect(() => {
+    setSkills(skillsData.skillsData);
+    setSelectedSkills(selectedSkillsData.skills);
+  }, []);
+
+  // Get the counts of each skill
+ // Get the skill names from the skills array
+const allSkillNames = skills.map((skill) => skill.name);
+
+// Get the counts of each skill
+const allSkillCounts = allSkillNames.reduce((counts, skill) => {
+  counts[skill] = (counts[skill] || 0) + 1;
+  return counts;
+}, {});
+
+
+  const selectedSkillCounts = selectedSkills.reduce((counts, skill) => {
+    counts[skill.name] = (counts[skill.name] || 0) + 1;
+    return counts;
+  }, {});
+
+  // Calculate the percentage of skills matched
+  const percentageMatched = Object.keys(selectedSkillCounts).reduce(
+    (percentage, skill) => {
+      const selectedCount = selectedSkillCounts[skill];
+      const allCount = allSkillCounts[skill] || 0;
+      const percentageForSkill = (selectedCount / allCount) * 100;
+      percentage[skill] = percentageForSkill;
+      return percentage;
+    },
+    {}
+  );
+
+  // Convert the percentage into chart data
+  const chartData = {
+    labels: Object.keys(percentageMatched),
+    datasets: [
+      {
+        data: Object.values(percentageMatched),
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Set the chart options
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Percentage of Skills Matched',
+      },
+    },
+  };
+
+  // Check if there are no selected skills
+  const noSkillsMatch = Object.keys(selectedSkillCounts).length === 0;
+
+  // Data for "No Skills Matched" with 0%
+  const noSkillsData = {
+    labels: ['No Skills Matched'],
+    datasets: [
+      {
+        data: [0],
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <div>
+      <h1>Skills Data</h1>
+      <h2>All Skills</h2>
+      {skills.map((skill, index) => (
+        <p key={index}>{skill}</p>
+      ))}
+      <h2>Selected Skills</h2>
+      {selectedSkills.map((skill, index) => (
+        <div key={index}>
+          <p>Name: {skill.name}</p>
+          <p>Rating: {skill.rating}</p>
+        </div>
+      ))}
+      <div style={{ width: '400px', height: '400px' }}>
+        <Pie
+          data={noSkillsMatch ? noSkillsData : chartData}
+          options={chartOptions}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default Charts;

@@ -1,0 +1,24 @@
+/* Reset default margin and padding */
+
+
+.charts-container {
+    background-image: url("../src/assets/form.png");
+    background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+ 
+  padding: 20px;
+
+  overflow-y: auto;
+  height: 100vh;
+  width: 100%; 
+}
+
+#container {
+  display: flex;
+  justify-content: space-around; /* Can be changed in the live sample */
+}
+
+
+
+/* Add additional styles to make the layout more attractive */

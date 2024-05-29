@@ -1,0 +1,127 @@
+body{
+  overflow-y: hidden;
+}
+
+.form-body{
+  background-image: url("../src/assets/form.png");
+    /* Adjust background image properties as needed */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Add other styles for the container */
+    width: 100%;
+    height: 101vh;
+    
+}
+.heading-container{
+  
+}
+.textDetails{
+  text-align: center;
+}
+.LoadingAnimation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.animation{
+
+  color: black;
+  border-radius: 10px;
+}
+.SubmitButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.d-block{
+  width: 100px;
+  color: black;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.welcome-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-container,
+.login-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  height: 100px;
+  width: 300px;
+  margin-left: -100px;
+}
+
+.login-button {
+  max-width: 100px;
+  cursor: pointer;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: space-evenly;
+  
+  
+
+}
+.first, .second {
+  border-radius: 20px;
+  background-color: #fff;
+  width: 600px;
+  margin-left: -100px;
+  line-height: 75px;
+  padding: 10px;
+ 
+}
+.slect-Role{
+  display: flex;
+  justify-content: center;
+  
+}
+.first{
+
+  height: 400px;
+  width: auto;
+  overflow-y: scroll;
+  
+}
+
+#developer-select-drop{
+  height: 28px;
+  margin-top: 10px;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+
+.second{
+  margin-left: -100px;
+}
+.first input{
+  width: 250px;
+}
+#second input {
+  width:500px
+}
+
+.skills-container{
+  justify-content: space-between  ;
+}
+.skill_box{
+  display: flex;
+  align-items: center;
+    justify-content: space-evenly;
+}
+

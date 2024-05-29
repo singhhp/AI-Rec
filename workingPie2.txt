@@ -1,0 +1,68 @@
+import React, { useState, useEffect } from 'react';
+import skillsData from './skillsDataResume.json';
+import selectedSkillsData from './selectedSkills.json';
+import { Pie } from 'react-chartjs-2';
+
+function Charts() {
+  const [skills, setSkills] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
+  useEffect(() => {
+    setSkills(skillsData.skillsData);
+    setSelectedSkills(selectedSkillsData.skills);
+  }, []);
+
+  const allSkills = skillsData.skillsData;
+  const selectedSkillsNames = selectedSkills.map((skill) => skill.name);
+
+  const matchedSkillsCount = selectedSkillsNames.filter((skill) => allSkills.includes(skill)).length;
+  const totalSkillsCount = selectedSkillsNames.length;
+  const percentageMatched = (matchedSkillsCount / totalSkillsCount) * 100;
+
+  const chartData = {
+    labels: ['Matched Skills', 'Not Matched Skills'],
+    datasets: [
+      {
+        data: [percentageMatched, 100 - percentageMatched],
+        backgroundColor: ['#36A2EB', '#FF6384'],
+        borderColor: ['#36A2EB', '#FF6384'],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Percentage of Skills Matched',
+      },
+    },
+  };
+
+  return (
+    <div>
+      <h1>Skills Data</h1>
+      <h2>All Skills</h2>
+      {allSkills.map((skill, index) => (
+        <p key={index}>{skill}</p>
+      ))}
+      <h2>Selected Skills</h2>
+      {selectedSkills.map((skill, index) => (
+        <div key={index}>
+          <p>Name: {skill.name}</p>
+          <p>Rating: {skill.rating}</p>
+        </div>
+      ))}
+      <div style={{ width: '400px', height: '400px' }}>
+        <Pie data={chartData} options={chartOptions} />
+      </div>
+    </div>
+  );
+}
+
+export default Charts;
