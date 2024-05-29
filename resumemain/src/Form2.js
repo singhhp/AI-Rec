@@ -168,7 +168,7 @@ const Form2 = ({ userName }) => {
     console.log("skillsData:", resumeData.skills);
     e.preventDefault();
     axios
-      .post("http://127.0.0.1:3001/register", {
+      .post("http://127.0.0.1:5000/register", {
         usernameExsist : userName,
         name: formData.name,
         mobileNumber: formData.mobileNumber,

@@ -17,7 +17,7 @@ const PieChart2 = ({userNameExist}) => {
     let lowercasedSkillsData = [];
     let lowercasedSelectedSkillsData = [];
     axios
-      .post("http://127.0.0.1:3001/dashboard")
+      .post("http://127.0.0.1:5000/dashboard")
       .then((result) => {
         const userName = userNameExist;
         let skillmatter = "";
@@ -44,6 +44,7 @@ const PieChart2 = ({userNameExist}) => {
       })
 
       .catch((error) => {
+
         console.error("Axios error:", error);
         // Handle any errors here
       });

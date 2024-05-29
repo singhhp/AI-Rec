@@ -20,7 +20,7 @@ function Charts({userNameExist}) {
   const [predictjob, setpredictjob] = useState("");
   useEffect(() => {
     axios
-      .post("http://127.0.0.1:3001/dashboard")
+      .post("http://127.0.0.1:5000/dashboard")
       .then((result) => {
         const userName = userNameExist;
         let skillmatter = "";

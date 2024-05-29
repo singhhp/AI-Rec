@@ -12,6 +12,7 @@ app.use(cors())
 mongoose.connect("mongodb://127.0.0.1:27017/employee");
 
 app.post('/dashboard', (req, res) => {
+    console.log("Dashboard",req.data)
     EmployeeModel.find()
         .then(users => {
             res.json(users); // Send all data from the database as JSON
@@ -28,6 +29,6 @@ app.post('/register', (req, res)=>{
     .catch(err => res.json(err))
 })
 
-app.listen(3001,()=>{
+app.listen(5000,()=>{
     console.log("server is running")
 })
